@@ -1,0 +1,7 @@
+dependencies {
+    implementation project(':usecase')
+    implementation project(':model')
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework:spring-context'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+}

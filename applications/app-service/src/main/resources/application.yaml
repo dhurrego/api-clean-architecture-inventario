@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  servlet:
+    context-path: "/api"
+spring:
+  application:
+    name: "api-creditos"
+  devtools:
+    add-properties: false
+  jpa:
+    database: "postgresql"
+    show-sql: false
+    hibernate:
+      ddl-auto: "update"
+  datasource:
+    driver-class-name: "org.postgresql.Driver"
+    url: "jdbc:postgresql://localhost:5432/inventario-dlk"
+    username: "postgres"
+    password: "Idl270309@"
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  sendgrid:
+    api-key: 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
+
+app:
+  mail:
+    remitente: deivid_199615@hotmail.com
+    destinatario-principal: deividurrego2012@gmail.com
+  rabbitmq:
+    queue:
+      email:
+        name: email-notification
