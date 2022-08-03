@@ -1,10 +1,8 @@
 package co.com.delikcrunch.usecase.producto;
 
 import co.com.delikcrunch.model.common.exception.BusinessException;
-import co.com.delikcrunch.model.notification.EmailNotification;
 import co.com.delikcrunch.model.producto.Producto;
 import co.com.delikcrunch.model.producto.gateways.ProductoRepository;
-import co.com.delikcrunch.usecase.notification.SolicitarNotificacionEmailUseCase;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;
@@ -14,17 +12,10 @@ public class GuardarProductoUseCase {
 
     private final ProductoRepository productoRepository;
 
-    private final SolicitarNotificacionEmailUseCase solicitarNotificacionEmailUseCase;
-
     public Producto guardar(Producto producto) {
         Producto productoExistente = productoRepository.findById(producto.getId());
 
         if (Objects.nonNull(productoExistente)) throw new BusinessException("Ya existe un producto con el mismo ID", 400);
-
-        solicitarNotificacionEmailUseCase.solicitar(EmailNotification.builder()
-                .contenido("Producto guardado ".concat(producto.getId()))
-                .asunto("Se ha guarado el producto")
-                .build());
 
         return productoRepository.save(producto);
     }
