@@ -32,4 +32,7 @@ public class ProductoData implements Serializable {
 
     @Column(name = "saldo_total", nullable = false)
     private Integer saldoTotal;
+
+    @Column(name = "estado", nullable = false, length = 20)
+    private String estado;
 }

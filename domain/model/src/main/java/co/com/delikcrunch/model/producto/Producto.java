@@ -15,8 +15,13 @@ public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public enum Estado {
+        ACTIVO, INACTIVO
+    }
+
     private String id;
     private String nombre;
     private String descripcion;
     private Integer saldoTotal;
+    private Estado estado;
 }

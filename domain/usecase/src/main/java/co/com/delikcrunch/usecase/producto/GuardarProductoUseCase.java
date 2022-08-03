@@ -25,7 +25,15 @@ public class GuardarProductoUseCase {
 
         if (Objects.isNull(productoExistente)) throw new BusinessException("El producto con ID ".concat(producto.getId()).concat(" no existe"), 404);
 
-        return productoRepository.save(producto);
+        if (Producto.Estado.INACTIVO.equals(productoExistente.getEstado())) throw new BusinessException("El producto con ID ".concat(producto.getId()).concat(" se encuentra INACTIVO y por tanto no puede ser actualizado"), 404);
+
+        return productoRepository.save(
+                productoExistente.toBuilder()
+                .saldoTotal(producto.getSaldoTotal())
+                .descripcion(producto.getDescripcion())
+                .nombre(producto.getNombre())
+                .build()
+        );
     }
 
     public Producto actualizarSaldo(String id, Integer saldo) {
@@ -33,11 +41,33 @@ public class GuardarProductoUseCase {
 
         if (Objects.isNull(producto)) throw new BusinessException("El producto con ID ".concat(id).concat(" no existe"), 404);
 
+        if (Producto.Estado.INACTIVO.equals(producto.getEstado())) throw new BusinessException("El producto con ID ".concat(producto.getId()).concat(" se encuentra INACTIVO y por tanto no se puede actualizar el saldo"), 404);
+
         if(saldo < 0) throw new BusinessException("El saldo del producto no puede ser menor a cero (0)", 400);
 
         producto.setSaldoTotal(saldo);
 
         return productoRepository.save(producto);
+    }
+
+    public void inactivar(String id) {
+        Producto producto = productoRepository.findById(id);
+
+        if (Objects.isNull(producto)) throw new BusinessException("El producto con ID ".concat(id).concat(" no existe"), 404);
+
+        producto.setEstado(Producto.Estado.INACTIVO);
+
+        productoRepository.save(producto);
+    }
+
+    public void activar(String id) {
+        Producto producto = productoRepository.findById(id);
+
+        if (Objects.isNull(producto)) throw new BusinessException("El producto con ID ".concat(id).concat(" no existe"), 404);
+
+        producto.setEstado(Producto.Estado.ACTIVO);
+
+        productoRepository.save(producto);
     }
 
 }
