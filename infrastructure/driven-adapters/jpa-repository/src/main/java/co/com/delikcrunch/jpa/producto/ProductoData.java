@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -32,6 +33,15 @@ public class ProductoData implements Serializable {
 
     @Column(name = "saldo_total", nullable = false)
     private Integer saldoTotal;
+
+    @Column(name = "fecha_creacion", nullable = false)
+    private LocalDateTime fechaCreacion;
+
+    @Column(name = "fecha_actualizacion", nullable = false)
+    private LocalDateTime fechaActualizacion;
+
+    @Column(name = "fecha_baja")
+    private LocalDateTime fechaBaja;
 
     @Column(name = "estado", nullable = false, length = 20)
     private String estado;

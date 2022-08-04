@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Data
 @NoArgsConstructor
@@ -13,7 +15,7 @@ import java.io.Serializable;
 @Builder(toBuilder = true)
 public class Producto implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2405172041950251807L;
 
     public enum Estado {
         ACTIVO, INACTIVO
@@ -24,4 +26,7 @@ public class Producto implements Serializable {
     private String descripcion;
     private Integer saldoTotal;
     private Estado estado;
+    private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaActualizacion;
+    private transient Optional<LocalDateTime> fechaBaja;
 }
