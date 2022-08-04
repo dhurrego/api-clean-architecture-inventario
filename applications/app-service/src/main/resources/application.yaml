@@ -30,6 +30,8 @@ app:
     remitente: deivid_199615@hotmail.com
     destinatario-principal: deividurrego2012@gmail.com
   rabbitmq:
+    exchange: email-exchange
+    routing-key: email-routing-key
     queue:
       email:
-        name: email-notification
+        name: email-notification-queue
