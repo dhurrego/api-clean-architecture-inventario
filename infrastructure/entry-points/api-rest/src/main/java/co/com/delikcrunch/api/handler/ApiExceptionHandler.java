@@ -60,11 +60,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ExceptionResponseDTO> manejarExcepcionGeneral(Exception exception, ServletWebRequest request){
         registrarLog(request.getRequest().getMethod(), request.getRequest().getRequestURI(), exception.getMessage());
+        exception.printStackTrace();
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(ExceptionResponseDTO.builder()
-                        .mensaje(exception.getMessage())
+                        .mensaje("Se presento un interno")
                         .code(HttpStatus.INTERNAL_SERVER_ERROR.value())
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -88,11 +89,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception exception, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
         registrarLog(((ServletWebRequest)request).getRequest().getMethod(), ((ServletWebRequest)request).getRequest().getRequestURI(), exception.getMessage());
+        exception.printStackTrace();
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(ExceptionResponseDTO.builder()
-                        .mensaje("Error no controlado")
+                        .mensaje("Se presento un interno")
                         .code(HttpStatus.INTERNAL_SERVER_ERROR.value())
                         .timestamp(LocalDateTime.now())
                         .build()
