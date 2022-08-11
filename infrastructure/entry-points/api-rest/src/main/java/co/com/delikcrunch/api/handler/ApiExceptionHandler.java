@@ -75,7 +75,6 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ExceptionResponseDTO> manejarExcepcionGeneral(Exception exception, ServletWebRequest request){
         registrarLog(request.getRequest().getMethod(), request.getRequest().getRequestURI(), exception);
-        exception.printStackTrace();
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .contentType(MediaType.APPLICATION_JSON)
