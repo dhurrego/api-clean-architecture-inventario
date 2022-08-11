@@ -28,7 +28,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ExceptionResponseDTO> manejarBusinessException(BusinessException exception, ServletWebRequest request){
-        registrarLog(request.getRequest().getMethod(), request.getRequest().getRequestURI(), exception.getMessage());
+        registrarLog(request.getRequest().getMethod(), request.getRequest().getRequestURI(), exception);
         return ResponseEntity
                 .status(HttpStatus.valueOf(exception.getCode()))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -42,7 +42,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<ExceptionResponseDTO> manejarProductNotFoundException(ProductNotFoundException exception, ServletWebRequest request){
-        registrarLog(request.getRequest().getMethod(), request.getRequest().getRequestURI(), exception.getMessage());
+        registrarLog(request.getRequest().getMethod(), request.getRequest().getRequestURI(), exception);
         return ResponseEntity
                 .status(HttpStatus.valueOf(exception.getCode()))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -60,7 +60,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 .getAllErrors()
                 .get(0)
                 .getDefaultMessage();
-        registrarLog(request.getRequest().getMethod(), request.getRequest().getRequestURI(), mensaje);
+        registrarLog(request.getRequest().getMethod(), request.getRequest().getRequestURI(), exception);
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -74,7 +74,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ExceptionResponseDTO> manejarExcepcionGeneral(Exception exception, ServletWebRequest request){
-        registrarLog(request.getRequest().getMethod(), request.getRequest().getRequestURI(), exception.getMessage());
+        registrarLog(request.getRequest().getMethod(), request.getRequest().getRequestURI(), exception);
         exception.printStackTrace();
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -89,7 +89,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException exception, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        registrarLog(((ServletWebRequest)request).getRequest().getMethod(), ((ServletWebRequest)request).getRequest().getRequestURI(), exception.getMessage());
+        registrarLog(((ServletWebRequest)request).getRequest().getMethod(), ((ServletWebRequest)request).getRequest().getRequestURI(), exception);
         return ResponseEntity
                 .status(status)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -103,8 +103,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception exception, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        registrarLog(((ServletWebRequest)request).getRequest().getMethod(), ((ServletWebRequest)request).getRequest().getRequestURI(), exception.getMessage());
-        exception.printStackTrace();
+        registrarLog(((ServletWebRequest)request).getRequest().getMethod(), ((ServletWebRequest)request).getRequest().getRequestURI(), exception);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -122,7 +121,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 .getAllErrors()
                 .get(0)
                 .getDefaultMessage();
-        registrarLog(((ServletWebRequest)request).getRequest().getMethod(), ((ServletWebRequest)request).getRequest().getRequestURI(), mensaje);
+        registrarLog(((ServletWebRequest)request).getRequest().getMethod(), ((ServletWebRequest)request).getRequest().getRequestURI(), exception);
         return ResponseEntity
                 .status(status)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -134,8 +133,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 );
     }
 
-    private void registrarLog(String metodoHttp, String uri, String motivoError) {
-        log.error("Se produjo un error al consumir {} {}, Mensaje: {}", metodoHttp, uri, motivoError);
+    private void registrarLog(String metodoHttp, String uri, Exception ex) {
+        log.error("Se produjo un error al consumir {} {}, Exception: {}", metodoHttp, uri, ex);
     }
 
 }
