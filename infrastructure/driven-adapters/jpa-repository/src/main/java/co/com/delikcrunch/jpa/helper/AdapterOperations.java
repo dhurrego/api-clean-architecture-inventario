@@ -18,7 +18,7 @@ public abstract class AdapterOperations<E, D, I, R extends CrudRepository<D, I> 
     protected ObjectMapper mapper;
     private Function<D, E> toEntityFn;
 
-    public AdapterOperations(R repository, ObjectMapper mapper, Function<D, E> toEntityFn) {
+    protected AdapterOperations(R repository, ObjectMapper mapper, Function<D, E> toEntityFn) {
         this.repository = repository;
         this.mapper = mapper;
         ParameterizedType genericSuperclass = (ParameterizedType) this.getClass().getGenericSuperclass();
