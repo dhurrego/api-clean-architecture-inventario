@@ -1,6 +1,7 @@
 package co.com.delikcrunch.usecase.producto;
 
 import co.com.delikcrunch.model.common.exception.BusinessException;
+import co.com.delikcrunch.model.common.exception.ProductNotFoundException;
 import co.com.delikcrunch.model.producto.Producto;
 import co.com.delikcrunch.model.producto.gateways.ProductoRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,7 @@ public class GuardarProductoUseCase {
         Producto productoExistente = productoRepository.findById(producto.getId());
 
         if (Objects.isNull(productoExistente))
-            throw new BusinessException("El producto con ID ".concat(producto.getId()).concat(" no existe"), 404);
+            throw new ProductNotFoundException(producto.getId());
 
         if (Producto.Estado.INACTIVO.equals(productoExistente.getEstado()))
             throw new BusinessException("El producto con ID ".concat(producto.getId()).concat(" se encuentra INACTIVO y por tanto no puede ser actualizado"), 404);
@@ -52,7 +53,7 @@ public class GuardarProductoUseCase {
         Producto producto = productoRepository.findById(id);
 
         if (Objects.isNull(producto))
-            throw new BusinessException("El producto con ID ".concat(id).concat(" no existe"), 404);
+            throw new ProductNotFoundException(id);
 
         if (Producto.Estado.INACTIVO.equals(producto.getEstado()))
             throw new BusinessException("El producto con ID ".concat(producto.getId()).concat(" se encuentra INACTIVO y por tanto no se puede actualizar el saldo"), 404);
@@ -71,7 +72,7 @@ public class GuardarProductoUseCase {
         Producto producto = productoRepository.findById(id);
 
         if (Objects.isNull(producto))
-            throw new BusinessException("El producto con ID ".concat(id).concat(" no existe"), 404);
+            throw new ProductNotFoundException(id);
 
         productoRepository.save(
                 producto.toBuilder()
@@ -86,7 +87,7 @@ public class GuardarProductoUseCase {
         Producto producto = productoRepository.findById(id);
 
         if (Objects.isNull(producto))
-            throw new BusinessException("El producto con ID ".concat(id).concat(" no existe"), 404);
+            throw new ProductNotFoundException(id);
 
         productoRepository.save(
                 producto.toBuilder()

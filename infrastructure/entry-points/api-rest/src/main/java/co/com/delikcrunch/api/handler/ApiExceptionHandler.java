@@ -2,6 +2,7 @@ package co.com.delikcrunch.api.handler;
 
 import co.com.delikcrunch.api.handler.dto.ExceptionResponseDTO;
 import co.com.delikcrunch.model.common.exception.BusinessException;
+import co.com.delikcrunch.model.common.exception.ProductNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -27,6 +28,20 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ExceptionResponseDTO> manejarBusinessException(BusinessException exception, ServletWebRequest request){
+        registrarLog(request.getRequest().getMethod(), request.getRequest().getRequestURI(), exception.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.valueOf(exception.getCode()))
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(ExceptionResponseDTO.builder()
+                        .mensaje(exception.getMessage())
+                        .code(exception.getCode())
+                        .timestamp(LocalDateTime.now())
+                        .build()
+                );
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<ExceptionResponseDTO> manejarProductNotFoundException(ProductNotFoundException exception, ServletWebRequest request){
         registrarLog(request.getRequest().getMethod(), request.getRequest().getRequestURI(), exception.getMessage());
         return ResponseEntity
                 .status(HttpStatus.valueOf(exception.getCode()))
