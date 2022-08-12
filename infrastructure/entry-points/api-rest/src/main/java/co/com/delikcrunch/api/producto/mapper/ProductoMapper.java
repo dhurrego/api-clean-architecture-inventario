@@ -22,7 +22,6 @@ public class ProductoMapper {
                 .nombre(productoDTO.getNombre())
                 .descripcion(productoDTO.getDescripcion())
                 .saldoTotal(productoDTO.getSaldoTotal())
-                .estado(Producto.Estado.ACTIVO)
                 .build();
     }
 }

@@ -15,6 +15,7 @@ subprojects {
     sourceCompatibility = JavaVersion.VERSION_1_8
 
     dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         compileOnly "org.projectlombok:lombok:${lombokVersion}"
         annotationProcessor  "org.projectlombok:lombok:${lombokVersion}"
@@ -33,6 +34,10 @@ subprojects {
             csv.enabled false
             html.destination file("${buildDir}/reports/jacocoHtml")
         }
+    }
+
+    test {
+        useJUnitPlatform()
     }
 
 }

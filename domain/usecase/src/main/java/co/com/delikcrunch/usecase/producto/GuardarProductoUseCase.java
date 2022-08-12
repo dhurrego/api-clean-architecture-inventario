@@ -23,6 +23,7 @@ public class GuardarProductoUseCase {
 
         return productoRepository.save(
                 producto.toBuilder()
+                        .estado(Producto.Estado.ACTIVO)
                         .fechaCreacion(LocalDateTime.now())
                         .fechaActualizacion(LocalDateTime.now())
                         .fechaBaja(Optional.empty())
