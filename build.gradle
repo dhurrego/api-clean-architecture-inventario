@@ -30,7 +30,7 @@ sonarqube {
         property "sonar.exclusions", "**/applications/app-service/src/main/java/co/com/delikcrunch/config/UseCasesConfig.java," +
                 "**/applications/app-service/src/main/java/co/com/delikcrunch/config/ObjectMapperConfig," +
                 "**/applications/app-service/src/main/java/co/com/delikcrunch/MainApplication," +
-                "**/infraestructure/driven-adapters/jpa-repository/src/main/java/co/com/delikcruch/jpa/helper/**" +
+                "**/infraestructure/driven-adapters/jpa-repository/src/main/java/co/com/delikcruch/jpa/helper/**," +
                 "**/infraestructure/driven-adapters/jpa-repository/src/main/java/co/com/delikcruch/jpa/producto/**," +
                 "**/infraestructure/driven-adapters/amqp-broker/src/main/java/co/com/delikcruch/rabbitmq/**," +
                 "**/infraestructure/driven-adapters/send-mail/src/main/java/co/com/delikcruch/mail/**," +
