@@ -1,6 +1,6 @@
 package co.com.delikcrunch.usecase.producto;
 
-import co.com.delikcrunch.model.common.exception.BusinessException;
+import co.com.delikcrunch.model.common.exception.ProductNotFoundException;
 import co.com.delikcrunch.model.producto.Producto;
 import co.com.delikcrunch.model.producto.gateways.ProductoRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class ListarProductosUseCase {
         Producto producto = productoRepository.findById(id);
 
         if (Objects.isNull(producto)) {
-            throw new BusinessException("Producto no encontrado", 404);
+            throw new ProductNotFoundException(id);
         }
 
         return producto;
