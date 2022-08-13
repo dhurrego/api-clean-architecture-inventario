@@ -7,15 +7,6 @@ public class ProductoMapper {
 
     private ProductoMapper() { }
 
-    public static ProductoDTO toProductoDTO(Producto producto) {
-        return ProductoDTO.builder()
-                .id(producto.getId())
-                .nombre(producto.getNombre())
-                .descripcion(producto.getDescripcion())
-                .saldoTotal(producto.getSaldoTotal())
-                .build();
-    }
-
     public static Producto toProducto(ProductoDTO productoDTO) {
         return Producto.builder()
                 .id(productoDTO.getId())

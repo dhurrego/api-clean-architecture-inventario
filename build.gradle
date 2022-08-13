@@ -34,7 +34,8 @@ sonarqube {
                 "**/infrastructure/driven-adapters/jpa-repository/src/main/java/co/com/delikcrunch/jpa/producto/**," +
                 "**/infrastructure/driven-adapters/amqp-broker/src/main/java/co/com/delikcrunch/rabbitmq/**," +
                 "**/infrastructure/driven-adapters/send-mail/src/main/java/co/com/delikcrunch/mail/**," +
-                "**/infrastructure/entry-points/api-rest/src/main/java/co/com/delikcrunch/api/handler/**"
+                "**/infrastructure/entry-points/api-rest/src/main/java/co/com/delikcrunch/api/handler/**," +
+                "**/domain/model/src/main/java/co/com/delikcrunch/model/common/exception/**"
     }
 }
 
