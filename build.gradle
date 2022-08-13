@@ -28,13 +28,13 @@ sonarqube {
         property "sonar.java.coveragePlugin", "jacoco"
         property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
         property "sonar.exclusions", "**/applications/app-service/src/main/java/co/com/delikcrunch/config/UseCasesConfig.java," +
-                "**/applications/app-service/src/main/java/co/com/delikcrunch/config/ObjectMapperConfig," +
-                "**/applications/app-service/src/main/java/co/com/delikcrunch/MainApplication," +
-                "**/infraestructure/driven-adapters/jpa-repository/src/main/java/co/com/delikcruch/jpa/helper/**," +
-                "**/infraestructure/driven-adapters/jpa-repository/src/main/java/co/com/delikcruch/jpa/producto/**," +
-                "**/infraestructure/driven-adapters/amqp-broker/src/main/java/co/com/delikcruch/rabbitmq/**," +
-                "**/infraestructure/driven-adapters/send-mail/src/main/java/co/com/delikcruch/mail/**," +
-                "**/infraestructure/entry-points/api-rest/src/main/java/co/com/delikcruch/api/handler/**"
+                "**/applications/app-service/src/main/java/co/com/delikcrunch/config/ObjectMapperConfig.java," +
+                "**/applications/app-service/src/main/java/co/com/delikcrunch/MainApplication.java," +
+                "**/infrastructure/driven-adapters/jpa-repository/src/main/java/co/com/delikcruch/jpa/helper/**," +
+                "**/infrastructure/driven-adapters/jpa-repository/src/main/java/co/com/delikcruch/jpa/producto/**," +
+                "**/infrastructure/driven-adapters/amqp-broker/src/main/java/co/com/delikcruch/rabbitmq/**," +
+                "**/infrastructure/driven-adapters/send-mail/src/main/java/co/com/delikcruch/mail/**," +
+                "**/infrastructure/entry-points/api-rest/src/main/java/co/com/delikcruch/api/handler/**"
     }
 }
 
