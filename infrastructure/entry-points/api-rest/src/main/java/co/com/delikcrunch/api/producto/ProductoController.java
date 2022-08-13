@@ -4,7 +4,7 @@ import co.com.delikcrunch.api.producto.dto.ProductoDTO;
 import co.com.delikcrunch.model.producto.Producto;
 import co.com.delikcrunch.usecase.producto.GuardarProductoUseCase;
 import co.com.delikcrunch.usecase.producto.ListarProductosUseCase;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ import static co.com.delikcrunch.api.producto.mapper.ProductoMapper.toProducto;
 
 @RestController
 @RequestMapping(value = "/productos", produces = MediaType.APPLICATION_JSON_VALUE)
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ProductoController {
 
     private final ListarProductosUseCase listarProductosUseCase;

@@ -4,6 +4,10 @@ public class ProductNotFoundException extends ApplicationException {
 
     private static final long serialVersionUID = 1L;
 
+    public ProductNotFoundException() {
+        super("Producto no encontrado", 404);
+    }
+
     public ProductNotFoundException(String codigoProducto) {
         this(obtenerMensajeError(codigoProducto), 404);
     }
